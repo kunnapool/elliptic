@@ -31,8 +31,6 @@ jobs:
     strategy:
       matrix:
         runEnv: [ubuntu-latest, windows-latest, macOS-latest]
-        checks:
-          [npx prettier --check ./, ./node_modules/eslint/bin/eslint.js ./]
 
     steps:
       - uses: actions/checkout@v2
@@ -46,4 +44,5 @@ jobs:
         run: npm install
 
       - name: Run checks
+        continue-on-error: true # these checks only check formatting styles, so allowed to fail
         run: ${{ matrix.checks }}
