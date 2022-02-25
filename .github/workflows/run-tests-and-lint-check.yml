@@ -31,6 +31,8 @@ jobs:
     strategy:
       matrix:
         runEnv: [ubuntu-latest, windows-latest, macOS-latest]
+        checks:
+          [npx prettier --check ./, ./node_modules/eslint/bin/eslint.js ./]
 
     steps:
       - uses: actions/checkout@v2
